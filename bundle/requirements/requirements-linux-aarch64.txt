@@ -83,6 +83,8 @@ certifi==2026.2.25 \
     #   curl-cffi
     #   requests
     #   yt-dlp
+gmssl==3.2.2 \
+    --hash=sha256:59f069a91eb19ef59b9e7be4d436ed01c92ce064d3d7d45a8778fc07fd2cd068
 cffi==2.0.0 \
     --hash=sha256:00bdf7acc5f795150faa6957054fbbca2439db2f775ce831222b66f192f03beb \
     --hash=sha256:07b271772c100085dd28b74fa0cd81c8fb1a3ba18b21e03d7c27f3436a10606b \

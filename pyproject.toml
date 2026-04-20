@@ -50,6 +50,7 @@ default = [
     "brotli ; implementation_name == 'cpython' and sys_platform != 'ios'",
     "brotlicffi ; implementation_name != 'cpython'",
     "certifi",
+    "gmssl>=3.2.1",
     "mutagen",
     "pycryptodomex",
     "requests>=2.32.2,<3",

@@ -1475,10 +1475,21 @@ class DouyinIE(TikTokBaseIE):
     def _real_extract(self, url):
         video_id = self._match_id(url)
 
+        # Generate a_bogus signature for the request
+        try:
+            from .douyin_abogus import ABogus
+            abogus = ABogus()
+            params = {'aweme_id': video_id}
+            a_bogus = abogus.get_value(params, method='GET')
+            query = {'aweme_id': video_id, 'a_bogus': a_bogus}
+        except ImportError as e:
+            self.to_screen(f'Warning: Could not generate a_bogus signature: {e}')
+            query = {'aweme_id': video_id}
+
         detail = traverse_obj(self._download_json(
             'https://www.douyin.com/aweme/v1/web/aweme/detail/', video_id,
             'Downloading web detail JSON', 'Failed to download web detail JSON',
-            query={'aweme_id': video_id}, fatal=False), ('aweme_detail', {dict}))
+            query=query, fatal=False), ('aweme_detail', {dict}))
         if not detail:
             # TODO: Run verification challenge code to generate signature cookies
             raise ExtractorError(
